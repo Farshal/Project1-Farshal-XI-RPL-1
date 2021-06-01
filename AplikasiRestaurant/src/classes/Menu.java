@@ -15,9 +15,9 @@ public class Menu {
     private String kategori;
     
     
-    private String getNama_menu() { return nama_menu; }
+    public String getNama_menu() { return nama_menu; }
     
-    private void setNama_menu(String nama_menu) {
+    public void setNama_menu(String nama_menu) {
         this.nama_menu = nama_menu;
     }
     
