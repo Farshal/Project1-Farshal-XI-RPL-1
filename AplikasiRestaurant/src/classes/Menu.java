@@ -15,17 +15,19 @@ public class Menu {
     private String kategori;
     
     
-    private String getNama_menu() { return ""; }
+    private String getNama_menu() { return nama_menu; }
     
-    private void setNama_menu(String nama_menu) {}
+    private void setNama_menu(String nama_menu) {
+        this.nama_menu = nama_menu;
+    }
     
-    public double getHarga() { return 0; }
+    public double getHarga() { return harga; }
     
-    void setHarga(double harga) {}
+    void setHarga(double harga) {this.harga=harga;}
     
-    public String getKategori() { return ""; }
+    public String getKategori() { return kategori; }
     
-    public void setKategori(String kategori) {} 
+    public void setKategori(String kategori) {this.kategori=kategori;} 
     
     
     
