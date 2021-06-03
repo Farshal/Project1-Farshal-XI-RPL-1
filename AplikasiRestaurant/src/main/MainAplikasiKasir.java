@@ -9,6 +9,10 @@ import classes.Ramen;
 import classes.Kuah;
 import classes.Toping;
 import classes.Minuman;
+import classes.Transaksi;
+import classes.Menu;
+import classes.Pesanan;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 /**
  *
@@ -44,7 +48,55 @@ public class MainAplikasiKasir {
             no_meja = input.next();
         }
         
-    }
+        Transaksi trans = new Transaksi(no_transaksi,nama_pemesan,tanggal,no_meja);
+        System.out.println("===========PESANAN========");
+        int no_kuah;
+        do{
+            Menu menu_yang_dipilih = app.daftarmenu.pilihMenu();
+            jumlah_pesanan = (int) app.cekInputNumber("Jumlah : ");
+            
+            Pesanan pesanan = new Pesanan(menu_yang_dipilih,jumlah_pesanan);
+            trans.tambahPesanan(pesanan);
+            if(menu_yang_dipilih.getKategori().equals("Ramen")){
+            int jumlah_ramen = jumlah_pesanan;
+            do{
+                Menu kuah_yang_dipilih = app.daftarmenu.pilihKuah();
+                System.out.print("Level : [0-5] : ");
+                String level = input.next();
+                int jumlah_kuah = 0;
+                
+                do{
+                    jumlah_kuah = (int) app.cekInputNumber("Jumlah : ");
+                    if(jumlah_kuah>jumlah_ramen){
+                        System.out.print("[Err] jumlah kuah melebihi jumlah kuah ramen");
+                    }else{
+                        break;
+                    }
+                     
+                }while(jumlah_kuah>jumlah_ramen);
+                Pesanan pesanan_kuah = new Pesanan(kuah_yang_dipilih,jumlah_kuah);
+                pesanan_kuah.setKeterangan("Level "+ level);
+                trans.tambahPesanan(pesanan_kuah);
+                jumlah_ramen -= jumlah_kuah;
+            }while(jumlah_ramen>0);
+                
+                
+            }else {
+                System.out.print("Keterangan [- jika kosong]:");
+            }
+            
+            if(!keterangan.equals("-")){
+                pesanan.setKeterangan(keterangan);
+            }
+            
+            System.out.print("Tambah Pesanan Lagi? [Y/N] : ");
+            pesan_lagi=input.next();
+            
+            
+        }while(pesan_lagi.equalsIgnoreCase("Y"));
+        }
+        
+    
  
     
   
@@ -69,6 +121,22 @@ public class MainAplikasiKasir {
         daftarmenu.tambahMenu(new Minuman("Vietnam Dripp", 14000));
         
         daftarmenu.tampilDaftarMenu();
+               
 }
+    
+    public double cekInputNumber(String Label){
+        try{
+            Scanner get_input = new Scanner(System.in);
+            System.out.print(Label);
+            double nilai = get_input.nextDouble();
+           
+        }catch(InputMismatchException ex){
+            System.out.println("[Err] Harap Masukkan Angka");
+           
+        }
+         return cekInputNumber(Label);
+    }
+
 }
+
     
