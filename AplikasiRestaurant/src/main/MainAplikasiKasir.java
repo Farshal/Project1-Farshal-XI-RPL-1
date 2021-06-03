@@ -32,7 +32,8 @@ public class MainAplikasiKasir {
         int jumlah_pesanan,no_menu;
         MainAplikasiKasir app = new MainAplikasiKasir();
         app.generateDaftarmenu();
-          System.out.println("======== TRANSAKSI ========");        
+          System.out.println("======== TRANSAKSI ========");   
+          do{
         //ambil data transaksi
         System.out.print("No Transaksi : ");
         no_transaksi = input.next();
@@ -124,6 +125,9 @@ public class MainAplikasiKasir {
             }
             
         }while(kembalian<0);
+        System.out.println("Lakukan Transaksi lg? [Y/N] : ");
+        transaksi_lagi = input.next();
+          }while(transaksi_lagi.equalsIgnoreCase("Y"));
         System.out.println("=========TERIMAKASIH=========");
         }
         
